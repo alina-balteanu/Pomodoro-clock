@@ -36,6 +36,7 @@ body {
 button {
   outline: none;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 .time-text {
   font-family: "Digital";
@@ -47,7 +48,7 @@ button {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   background: $bg-color;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -71,7 +72,9 @@ button {
   padding-bottom: 0.5rem;
 
   button {
-    flex: 1;
+    display: inline-block;
+    padding: 0;
+    margin: auto;
     padding: 0.5rem 1rem;
     background: transparent;
     border: none;
@@ -165,10 +168,12 @@ button {
   }
 }
 
-.colon {
-  position: relative;
-  animation: flickerColon 1s infinite;
-  top: -5px;
+#time-left {
+  & :nth-child(3) {
+    position: relative;
+    animation: flickerColon 1s infinite;
+    top: -5px;
+  }
 }
 
 @keyframes flickerColon {
@@ -182,5 +187,67 @@ button {
 
   100% {
     opacity: 0;
+  }
+}
+
+//svg tomato
+svg {
+  width: 100px;
+  padding-bottom: 1rem;
+}
+
+.tail0 {
+  fill: #4dc430;
+}
+.tail1 {
+  fill: #3aad1a;
+}
+.st2 {
+  fill: #ff4800;
+}
+.st3 {
+  fill: #c62b00;
+}
+.st4 {
+  fill: #ff794a;
+}
+.st5 {
+  fill: #ef683f;
+}
+.st6 {
+  fill: #b21010;
+}
+.st7 {
+  fill: #a00000;
+}
+.seed {
+  fill: #ffcd50;
+  animation: seedAnim 1.5s ease-in-out infinite alternate;
+}
+
+.loader {
+  stroke: rgba(#c62b00, 0.5);
+  stroke-width: 37px;
+  fill: transparent;
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+@keyframes seedAnim {
+  0% {
+    fill: #ffcd50;
+  }
+  20% {
+    fill: darken($color-green, 10);
+  }
+  100% {
+    fill: #ffcd50;
+  }
+}
+
+@for $y from 1 through 13 {
+  .seed:nth-of-type(#{$y}) {
+    animation-delay: $y * 0.15s;
   }
 }
